@@ -1,0 +1,105 @@
+" search options
+set incsearch
+set ignorecase
+set smartcase
+set hlsearch
+
+" syntax
+filetype plugin on
+syntax enable
+set showmatch
+set matchtime=3
+
+" code folding
+set foldmethod=indent
+set foldnestmax=2
+set nofoldenable
+nnoremap <leader>f za
+vnoremap <leader>f zf
+
+" general options
+let mapleader = '\'
+set history=700
+set autoread
+set number
+set laststatus=2
+set nocompatible
+set encoding=utf8
+set ffs=unix,dos,mac
+set nobackup
+set nowb
+set noswapfile
+set cursorline
+set shortmess=aoOtI
+set nospell spelllang=en
+set tabstop=4 shiftwidth=4 expandtab
+set colorcolumn=72
+set noshowmode
+set backspace=indent,eol,start
+set linebreak
+if !has('nvim')
+    set ttyfast
+    set term=xterm-256color
+endif
+
+" shortcuts
+map <leader>n :set nonumber!<CR>
+map <leader>t :NERDTreeToggle<cr>
+map <leader>q :nohlsearch<CR>
+
+" color scheme
+set t_Co=256
+set background=dark
+let g:gruvbox_termcolors=256
+let g:gruvbox_bold = 1
+let g:gruvbox_italic = 1
+let g:gruvbox_underline = 1
+let g:gruvbox_italic_comments= 1
+let g:gruvbox_cursor_line_number_background = 1
+let g:gruvbox_uniform_diff_background = 1
+set termguicolors
+colorscheme gruvbox
+
+" airline
+set ttimeoutlen=10
+let g:airline_powerline_fonts = 1
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#whitespace#enabled = 0
+
+
+if has('nvim')
+    " plugin management
+    call plug#begin('~/.local/share/nvim/site/pack/sdo/start')
+    " neovim LSP integration
+    Plug 'neovim/nvim-lspconfig'
+    call plug#end()
+    set shada=!,'100,<50,s10,h
+    set guicursor=n-v-c-sm:hor20,i-ci-ve:ver25,r-cr-o:hor20
+    " Remember cursor position between vim sessions
+    autocmd BufReadPost *
+          \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+          \   exe "normal! g'\"" |
+          \ endif
+    highlight Comment gui=italic
+endif
+
+" gui options
+if has('gui_running')
+    " disable toolbar
+    set guioptions -=T
+    " disable left scrollbar
+    set guioptions -=l
+    " disable right scrollbar
+    set guioptions -=r
+    " disable bottom scrollbar
+    set guioptions -=b
+    " disable menu
+    " set guioptions -=m
+    " set font
+    set guifont=Menlo 15
+endif
+

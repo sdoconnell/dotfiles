@@ -1,0 +1,31 @@
+# status bar
+set -g status-position bottom
+set -g status-justify left
+set -g status-bg colour236
+set -g status-fg white
+
+# status left
+set -g status-left-length 100
+
+# status right
+set -g status-right-length 100
+
+# window
+setw -g window-status-separator ""
+
+# panes
+set -g pane-active-border-style "fg=colour8,bg=default"
+set -g pane-border-style "fg=colour8,bg=default"
+
+# command bar
+set -g message-command-style "fg=colour8,bg=colour236"
+set -g message-style "fg=colour8,bg=colour236"
+
+# Window status
+setw -g window-status-current-format "#[fg=colour232,bg=colour136]  #I  #[default]"
+setw -g window-status-format "#{?window_activity_flag,#[fg=colour3],#[fg=colour8]}  #I  #[default]"
+setw -g window-status-activity-style "fg=colour3"
+
+# Status left and right
+set-option -g status-left "#[fg=colour232,bg=colour7]  #{session_name}  #[default]"
+set-option -g status-right ""
